@@ -1,0 +1,1 @@
+/home/luke/.config/themes/dark-decay/lite-xl/color.lua

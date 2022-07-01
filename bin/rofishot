@@ -1,0 +1,38 @@
+#!/bin/bash
+
+choice=$(/home/luke/rofishotc | rofi -dmenu -p "Screenshot")
+if [[ -z "${choice// }" ]]; then
+      exit 1
+fi
+  
+  # Run the selected command.
+  case $choice in
+    'Full (Clip)')
+        wayshot -c
+      ;;
+    'Full (File)')
+        int=$(incer)
+	wayshot ~/Pictures/$int.png
+      ;;
+    'Selection (Clip)')
+        wayshot -s -c
+      ;;
+    'Selection (File)')
+        int=$(incer)
+	wayshot -s ~/Pictures/$int.png
+      ;;
+    'Delay 2 (Clip)')
+        wayshot -d 2 -c 
+      ;;
+    'Delay 2 (File)')
+	int=$(incer)
+        wayshot -d 2 ~/Pictures/$int.png
+      ;;
+    'Delay 5 (Clip)')
+        wayshot -d 5 -c 
+      ;;
+    'Delay 5 (File)')
+	int=$(incer)
+        wayshot -d 5 ~/Pictures/$int.png
+      ;;
+  esac

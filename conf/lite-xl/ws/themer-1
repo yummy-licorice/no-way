@@ -1,0 +1,1 @@
+return { path = "/home/luke/themer", documents = {["views"]={[1]={["active"]=true,["selection"]={[1]=38,[2]=14,[3]=38,[4]=20},["text"]=false,["scroll"]={["x"]=20.333333333333,["y"]=452.3333269755},["type"]="doc",["filename"]="src/themer.nim"}},["type"]="leaf",["active_view"]=1}, directories = {} }

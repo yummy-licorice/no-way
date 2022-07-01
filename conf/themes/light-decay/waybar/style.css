@@ -1,0 +1,246 @@
+* {
+	border: none;
+	border-radius: 10;
+    font-family: "JetbrainsMono Nerd Font" ;
+	font-size: 15px;
+	min-height: 10px;
+}
+
+window#waybar {
+	background: transparent;
+}
+
+window#waybar.hidden {
+	opacity: 0.2;
+}
+
+#window {
+	margin-top: 6px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-radius: 10px;
+	transition: none;
+    color: transparent;
+	background: transparent;
+}
+#tags {
+	margin-top: 6px;
+	margin-left: 12px;
+	font-size: 4px;
+	margin-bottom: 0px;
+	border-radius: 15px;
+	background: #dee1e6;
+	transition: none;
+  
+}
+
+#tags button {
+	transition: none;
+	color: #b6beca;
+	background: transparent;
+	font-size: 16px;
+	border-radius: 2px;
+}
+
+#tags button.occupied {
+	transition: none;
+	color: #ceac67;
+	background: transparent;
+	font-size: 4px;
+}
+
+#tags button.focused {
+	color: #69b373;
+}
+
+#tags button:hover {
+	transition: none;
+	box-shadow: inherit;
+	text-shadow: inherit;
+	color: #ceac67;
+    border-color: #519bc6;
+    color: #519bc6;
+}
+
+#tags button.focused:hover {
+    color: #519bc6;
+}
+
+#custom-updates, #backlight, #custom-power, #pulseaudio, #clock, #custom-power, #battery, #battery.charging, #battery.plugged {
+  border-radius: 15px;
+}
+
+#network {
+	margin-top: 6px;
+	margin-left: 8px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-bottom: 0px;
+	border-radius: 10px;
+	transition: none;
+	color: #dee1e6;
+	background: #a367cb;
+}
+
+#pulseaudio {
+	margin-top: 6px;
+	margin-left: 8px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-bottom: 0px;
+	transition: none;
+	color: #dee1e6;
+	background: #f1cf8a;
+}
+
+#battery {
+	margin-top: 6px;
+	margin-left: 8px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-bottom: 0px;
+	transition: none;
+	color: #dee1e6;
+	background: #519bc6;
+}
+
+#battery.charging, #battery.plugged {
+	color: #dee1e6;
+    background-color: #519bc6;
+}
+
+#battery.critical:not(.charging) {
+    background-color: #519bc6;
+    color: #dee1e6;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes blink {
+    to {
+        background-color: #bd3c42;
+        color: #74bee9;
+    }
+}
+
+#backlight {
+	margin-top: 6px;
+	margin-left: 8px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-bottom: 0px;
+	transition: none;
+	color: #dee1e6;
+	background: #e9a180;
+}
+#clock {
+	margin-top: 6px;
+	margin-left: 8px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-bottom: 0px;
+	transition: none;
+	color: #dee1e6;
+	background: #69b373;
+	/*background: #1A1826;*/
+}
+
+#memory {
+	margin-top: 6px;
+	margin-left: 8px;
+	padding-left: 10px;
+	margin-bottom: 0px;
+	padding-right: 10px;
+	border-radius: 10px;
+	transition: none;
+	color: #dee1e6;
+	background: #DDB6F2;
+}
+#cpu {
+	margin-top: 6px;
+	margin-left: 8px;
+	padding-left: 10px;
+	margin-bottom: 0px;
+	padding-right: 10px;
+	border-radius: 10px;
+	transition: none;
+	color: #dee1e6;
+	background: #96CDFB;
+}
+
+#tray {
+	margin-top: 6px;
+	margin-left: 8px;
+	padding-left: 10px;
+	margin-bottom: 0px;
+	padding-right: 10px;
+	border-radius: 15px;
+	transition: none;
+	color: #B5E8E0;
+	background: #dee1e6;
+}
+
+#custom-launcher {
+	font-size: 20px;
+	margin-top: 6px;
+	margin-left: 8px;
+	padding-left: 10px;
+	padding-right: 13px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+	border-radius: 100%;
+	transition: none;
+    color: #dee1e6;
+    background-image: linear-gradient(#69b373, #4d82c8);;
+}
+
+#custom-power {
+	font-size: 20px;
+	margin-top: 6px;
+	margin-left: 8px;
+	margin-right: 8px;
+	padding-left: 10px;
+	padding-right: 5px;
+	margin-bottom: 0px;
+	transition: none;
+	color: #dee1e6;
+	background: #bd3c42;
+}
+
+#custom-wallpaper {
+	margin-top: 6px;
+	margin-left: 8px;
+	padding-left: 10px;
+	padding-right: 14px;
+	margin-bottom: 0px;
+	border-radius: 15px;
+	transition: none;
+	color: #dee1e6;
+	background: #C9CBFF;
+}
+
+#custom-updates {
+	margin-top: 6px;
+	margin-left: 8px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-bottom: 0px;
+	transition: none;
+	color: #dee1e6;
+	background: #a367cb;
+}
+
+#custom-media {
+	margin-top: 6px;
+	margin-left: 8px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-bottom: 0px;
+	border-radius: 10px;
+	transition: none;
+	color: #dee1e6;
+	background: #F2CDCD;
+}

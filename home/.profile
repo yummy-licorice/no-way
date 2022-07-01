@@ -1,1 +1,2 @@
-/home/luke/.profile
+#!/bin/bash
+export PATH=/home/luke/.nimble/bin:$PATH

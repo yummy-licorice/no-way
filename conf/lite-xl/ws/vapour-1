@@ -1,0 +1,1 @@
+return { path = "/home/luke/.config/nvim/lua/vapour", documents = {["views"]={},["type"]="leaf"}, directories = {} }

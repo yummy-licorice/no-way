@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# Kill everything
+killall foot waybar dunst wbg time_theme wl-paste wlr-brightness
+
+# Terminal server
+#foot --server &
+# Wallpaper
+wbg /home/luke/.config/wall.jpg &
+# Bar
+waybar &
+# Notifications
+dunst &
+# Theme server
+#time_theme --server
+# Clipboard
+wl-paste -pw wl-copy &
+# Brightness
+wlr-brightness &

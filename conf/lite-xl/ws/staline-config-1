@@ -1,0 +1,1 @@
+return { path = "/home/luke/.config/nvim/lua/staline-config", documents = {["active_view"]=1,["type"]="leaf",["views"]={[1]={["filename"]="normal.lua",["type"]="doc",["active"]=true,["text"]=false,["scroll"]={["y"]=423.3333269755,["x"]=0},["selection"]={[1]=39,[2]=18,[3]=39,[4]=18}}}}, directories = {} }

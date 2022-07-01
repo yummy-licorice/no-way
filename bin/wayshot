@@ -1,0 +1,135 @@
+#!/bin/bash
+
+shopt -s extglob
+
+if hash jq 2>/dev/null; then
+  JQ_AVAILABLE=1
+fi
+
+if hash wl-copy 2>/dev/null; then
+  WLCOPY_AVAILABLE=1
+fi
+
+USAGE="\
+Usage: $(basename "$0") [options...] [filename]
+
+Screenshots are written to specified filename or to a
+timestamped file if not specified. See grim(1) for more info.
+
+Use - as filename to write the screenshot to stdout.
+
+Options:
+  -s      Select a region to capture
+  -w      Select a window (only in sway)$([ -z "$JQ_AVAILABLE" ] && echo " (not available)")
+  -d <n>  Delay by n seconds
+  -c      Save screenshot to clipboard$([ -z "$WLCOPY_AVAILABLE" ] && echo " (not available)")
+  -x      Include cursors in the screenshot
+  -h      Show this help message
+"
+
+function echo_usage {
+  echo ""
+  echo "$USAGE"
+}
+
+while (( $# > 0 )); do
+  case $1 in
+    -s)
+      REGION=yes
+      shift
+      ;;
+    -w)
+      if [ -z "$JQ_AVAILABLE" ]; then
+        echo "jq was not found, please install jq to use this function."
+        exit 1
+      fi
+      SWAY_WINDOW=yes
+      shift
+      ;;
+    -d)
+      shift
+      if [ -z "$1" ]; then
+        echo "-d requires a postive integer."
+        echo_usage
+        exit 1
+      elif ! [ "$1" -ge "$1" ] 2>/dev/null; then
+        echo "Not an integer: $1"
+        echo_usage
+        exit 1
+      elif [ "$1" -lt "1" ]; then
+        echo "Delay has to be a positive integer."
+        exit 1
+      fi
+      DELAY=$1
+      shift
+      ;;
+    -c)
+      if [ -z "$WLCOPY_AVAILABLE" ]; then
+        echo "wl-copy was not found, please install wl-clipboard to use this function."
+        exit 1
+      fi
+      CLIPBOARD=yes
+      shift
+      ;;
+    -x)
+      CURSOR=yes
+      shift
+      ;;
+    -h)
+      echo "$USAGE"
+      exit 0
+      ;;
+    -+(?))
+      echo "Unknown argument: $1"
+      echo_usage
+      exit 1
+      ;;
+    *)
+      if [ -z "$FILENAME" ]; then
+        FILENAME="$1"
+        shift
+      else
+        echo "Too many arguments."
+        echo_usage
+        exit 1
+      fi
+      ;;
+  esac
+done
+
+if [ -n "$REGION" ] && [ -n "$SWAY_WINDOW" ]; then
+  echo "You may only use one of -s and -w."
+  echo_usage
+  exit 1
+fi
+
+OPTS=()
+if [ -n "$REGION" ]; then
+  OPTS+=("-g $(slurp)")
+fi
+
+if [ -n "$SWAY_WINDOW" ]; then
+  SELECTION=$(swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | slurp)
+  OPTS+=("-g $SELECTION")
+fi
+
+if [ -n "$CURSOR" ]; then
+  OPTS+=("-c")
+fi
+
+if [ -n "$DELAY" ]; then
+  for COUNT in $(seq "$DELAY" -1 1); do
+    echo -n "$COUNT "
+    sleep 1
+  done
+  echo "Smile! :)"
+  echo ""
+fi
+
+if [ -n "$CLIPBOARD" ]; then
+  grim "${OPTS[@]}" - | wl-copy
+elif [ -n "$FILENAME" ]; then
+  grim "${OPTS[@]}" "$FILENAME"
+else
+  grim "${OPTS[@]}"
+fi
